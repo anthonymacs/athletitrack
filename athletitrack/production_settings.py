@@ -48,14 +48,20 @@ ANYMAIL = {
     "SENDGRID_API_KEY": "YOUR_SENDGRID_API_KEY",
 }
 
-# ---------------- DATABASE CONFIGURATION (RAILWAY MYSQL) ----------------
 import os
 import dj_database_url
+from .settings import *
 
+# Load local .env (only for local development)
+from dotenv import load_dotenv
+load_dotenv()
+
+# Use DATABASE_URL environment variable
 DATABASES = {
     'default': dj_database_url.parse(
-       os.environ.get("DATABASE_URL"),  # Reads DATABASE_URL from Railway env
+        os.environ.get("DATABASE_URL"),  # reads from .env locally or Railway env in production
         conn_max_age=600,
         ssl_require=True
     )
 }
+
