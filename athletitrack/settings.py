@@ -22,6 +22,7 @@ ALLOWED_HOSTS = [
     'localhost',
     '.ngrok-free.app',
     '.trycloudflare.com',
+'127.0.0.1', 'localhost', '0.0.0.0'
 ]
 
 CSRF_TRUSTED_ORIGINS = [
@@ -96,14 +97,16 @@ WSGI_APPLICATION = 'athletitrack.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'athletitrack_db',
-        'USER': 'root',      # Laragon's default username
-        'PASSWORD': '',      # Laragon's default password is empty
+        'NAME': 'athletitrack_db',        # exact name you see in phpMyAdmin
+        'USER': 'root',                   # WAMP default
+        'PASSWORD': '',                   # WAMP default = blank (no password)
         'HOST': '127.0.0.1',
         'PORT': '3306',
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+        },
     }
 }
-
 
 
 # Password validation
@@ -217,4 +220,12 @@ PWA_APP_ICONS_APPLE = [
     }
 ]
 PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, 'static/js', 'serviceworker.js')
+# settings.py
+
+#ALLOWED_HOSTS = ['antonio19.pythonanywhere.com']
+
+
+# For static files
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 

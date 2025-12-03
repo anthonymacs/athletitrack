@@ -25,7 +25,8 @@ SECRET_KEY = 'django-insecure-*n%ti@^l0qjizkrd*d7!h!)l6zmue$8bavtvn$@(&@ufq06h3g
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# settings.py
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '0.0.0.0']
 
 
 # Application definition
@@ -74,8 +75,17 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'athletitrack_db',
+        'USER': 'root',                  # usual local MySQL user
+        'PASSWORD': '',                  # leave empty if no password (WAMP default)
+        # 'PASSWORD': 'yourpassword',    # ← uncomment & put password if you have one
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+            'charset': 'utf8mb4',
+        },
     }
 }
 
