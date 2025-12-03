@@ -47,3 +47,15 @@ EMAIL_BACKEND = "anymail.backends.sendgrid.EmailBackend"
 ANYMAIL = {
     "SENDGRID_API_KEY": "YOUR_SENDGRID_API_KEY",
 }
+
+# ---------------- DATABASE CONFIGURATION (RAILWAY MYSQL) ----------------
+import os
+import dj_database_url
+
+DATABASES = {
+    'default': dj_database_url.parse(
+        os.environ.get("MYSQL_PUBLIC_URL"),  # Railway MySQL shared variable
+        conn_max_age=600,
+        ssl_require=True
+    )
+}
