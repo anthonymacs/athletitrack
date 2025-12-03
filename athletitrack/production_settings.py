@@ -54,7 +54,7 @@ import dj_database_url
 
 DATABASES = {
     'default': dj_database_url.parse(
-        os.environ.get("MYSQL_PUBLIC_URL"),  # Railway MySQL shared variable
+       os.environ.get("DATABASE_URL"),  # Reads DATABASE_URL from Railway env
         conn_max_age=600,
         ssl_require=True
     )
